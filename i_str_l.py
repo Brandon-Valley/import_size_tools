@@ -51,7 +51,7 @@ i_str_l =     [
         "from pyperclip import copy            ",
         "import clipboard                      ",
         "import win32clipboard                 ",
-        
+        "import win10toast                     ",
 
     ]
 
