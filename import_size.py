@@ -148,6 +148,9 @@ def main():
        
     og_script_dir_path = os.path.abspath(os.path.dirname(__file__))
        
+    failed_import_str_l = []
+       
+       
     for i_str in i_str_l:
         i_str = i_str.strip()
             
@@ -155,9 +158,20 @@ def main():
             print('\nSkipping import because size already known:  {} : {}'.format(i_str, master_size_d[i_str]))
             
         else:
+            os.chdir(og_script_dir_path)
             fsu.delete_if_exists(PY_TEST_DIR_PATH)
             write([i_str], PY_TEST_PATH)
+            
             os.chdir(PY_TEST_DIR_PATH)
+            
+            # check to make sure the import actually works
+            try:
+                cmd = 'python ' + PY_TEST_FILE_NAME
+                py_out = subprocess.check_output(cmd, shell = True)
+            except subprocess.CalledProcessError:
+                failed_import_str_l.append(i_str)
+                continue
+            
                
             cmd = 'pyinstaller ' + PY_TEST_FILE_NAME
             subprocess.call(cmd, shell = True)
@@ -201,6 +215,12 @@ def main():
     l_print(adj_local_sorted_size_str_l)
     print('\nSmallest: ', smallest_size_from_size_d(master_size_d))
     
+    
+    if len(failed_import_str_l) > 0:
+        print('\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        print('\nThe following imports failed, please remove them from i_str_l:')
+        l_print(failed_import_str_l)
+        
         
     
     json_write(master_sorted_size_l, SORTED_STR_L_JSON_PATH)

@@ -51,7 +51,11 @@ i_str_l =     [
         "import tkinter.Button                 ",
         "import tkinter.Entry                  ",
         "import tkinter.Label                  ",
-        "import tkinter.filedialog             "
+        "import tkinter.filedialog             ",
+        "import pygame                         ",
+        "import pil                            ",
+        "import sdofaohosddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfhoa",
+        "import sdofaohosdfhoa",
     ]
 
 
