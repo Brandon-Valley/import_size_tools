@@ -1,4 +1,5 @@
 [
+    "import clipboard  :  78.742",
     "import pyperclip  :  78.74",
     "from pyperclip import copy  :  78.74",
     "import pygame  :  69.736",
@@ -26,6 +27,7 @@
     "import tkinter.Entry  :  15.388",
     "import tkinter.Button  :  15.388",
     "import tkinter.Label  :  15.388",
+    "import win32clipboard  :  15.381",
     "import json  :  15.311",
     "import six  :  15.293",
     "import csv  :  15.271",

@@ -49,6 +49,9 @@ i_str_l =     [
         "import tkinter.filedialog             ",
         "import pygame                         ",
         "from pyperclip import copy            ",
+        "import clipboard                      ",
+        "import win32clipboard                 ",
+        
 
     ]
 
