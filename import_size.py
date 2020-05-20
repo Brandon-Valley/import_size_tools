@@ -4,8 +4,6 @@ import json
 
 from i_str_l import i_str_l
 
-import os, sys
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from usms.file_system_utils import file_system_utils as fsu
 
 
