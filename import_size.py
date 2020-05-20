@@ -14,9 +14,9 @@ PY_TEST_PATH = PY_TEST_DIR_PATH + '//' + PY_TEST_FILE_NAME
 SORTED_STR_L_DELIM = '  :  '
 SORTED_STR_L_JSON_PATH = 'sorted_import_sizes.json'
 ADJ_SORTED_STR_L_JSON_PATH = 'adj_sorted_import_sizes.json'
-NUM_DECIMAL_DIGITS = 1
+NUM_DECIMAL_DIGITS = 3
 
-OVERWRITE_MASTER_SIZES = False
+OVERWRITE_MASTER_SIZES = True
 
 
 def get_size(start_path = '.'):
@@ -96,6 +96,12 @@ def size_d_to_sorted_str_l(size_d):
         sorted_str_l.append(size_str)
     return sorted_str_l
 
+
+def smallest_size_from_size_d(size_d):
+    sorted_key_l = sorted(size_d, key=lambda i: float(size_d[i]))
+    lowest_key = sorted_key_l[0]
+    smallest_size = size_d[lowest_key]
+    return smallest_size
 
 
 def size_d_to_adjusted_size_d(size_d, master_size_d = None):
@@ -181,13 +187,21 @@ def main():
     adj_master_size_str_l = size_d_to_sorted_str_l(adj_master_size_d)
     print('\nadj_master_size_str_l:')
     l_print(adj_master_size_str_l)
+    print('\nSmallest: ', smallest_size_from_size_d(master_size_d))
     
     print('-------------------------------------------------------')
     local_sorted_size_str_l = size_d_to_sorted_str_l(local_size_d)
     print('\nlocal_sorted_size_str_l:')
     l_print(local_sorted_size_str_l)
     
+    print('-------------------------------------------------------')
+    adj_local_size_d = size_d_to_adjusted_size_d(local_size_d, master_size_d)
+    adj_local_sorted_size_str_l = size_d_to_sorted_str_l(adj_local_size_d)
+    print('\nadj_local_sorted_size_str_l:')
+    l_print(adj_local_sorted_size_str_l)
+    print('\nSmallest: ', smallest_size_from_size_d(master_size_d))
     
+        
     
     json_write(master_sorted_size_l, SORTED_STR_L_JSON_PATH)
     json_write(adj_master_size_str_l, ADJ_SORTED_STR_L_JSON_PATH)
