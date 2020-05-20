@@ -74,18 +74,19 @@ all_files_abs_path_l = fsu.get_dir_content_l(proj_path, object_type = 'file', co
  
 i_str_set = set()
 fi_d = {}
-py_basename_abs_path_ld = {}
+py_basename_abs_path_sd = {}
  
 for abs_file_path in all_files_abs_path_l:
     ext = fsu.get_extention(abs_file_path)
  
-    if ext in ['.py', '.pyw']:
+#     if ext in ['.py', '.pyw']:
+    if ext == '.py' or ext == '.pyw':
         py_basename = os.path.basename(abs_file_path)
         
-        if py_basename not in py_basename_abs_path_ld.keys():
-            py_basename_abs_path_ld[py_basename] = []
+        if py_basename not in py_basename_abs_path_sd.keys():
+            py_basename_abs_path_sd[py_basename] = set()
             
-        py_basename_abs_path_ld[py_basename].append(abs_file_path)
+        py_basename_abs_path_sd[py_basename].add(abs_file_path)
         
         fi_d[py_basename] = set()
         
@@ -125,7 +126,7 @@ for abs_file_path in all_files_abs_path_l:
                         i_str_set.add(non_comment_ss_str)
                     
 
-for k, v in py_basename_abs_path_ld.items():
+for k, v in py_basename_abs_path_sd.items():
     print('*******************************')
     print(k)
     for abs_path in v:
