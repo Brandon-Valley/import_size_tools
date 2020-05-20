@@ -70,16 +70,23 @@ proj_path = "C:\\projects\\version_control_scripts\\CE\\setup_new_repo\\src"
  
 all_files_abs_path_l = fsu.get_dir_content_l(proj_path, object_type = 'file', content_type = 'abs_path', recurs_dirs = True)
  
-print(all_files_abs_path_l)
+# print(all_files_abs_path_l)
  
 i_str_set = set()
 fi_d = {}
+py_basename_abs_path_ld = {}
  
 for abs_file_path in all_files_abs_path_l:
     ext = fsu.get_extention(abs_file_path)
  
     if ext in ['.py', '.pyw']:
         py_basename = os.path.basename(abs_file_path)
+        
+        if py_basename not in py_basename_abs_path_ld.keys():
+            py_basename_abs_path_ld[py_basename] = []
+            
+        py_basename_abs_path_ld[py_basename].append(abs_file_path)
+        
         fi_d[py_basename] = set()
         
         lines = read(abs_file_path)
@@ -118,9 +125,13 @@ for abs_file_path in all_files_abs_path_l:
                         i_str_set.add(non_comment_ss_str)
                     
 
-                    
+for k, v in py_basename_abs_path_ld.items():
+    print('*******************************')
+    print(k)
+    for abs_path in v:
+        print('               ', abs_file_path)                    
                 
-                
+print('\n')                
 for k, v in fi_d.items():
     print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
     print('\n {}    {}'.format(k,v))
