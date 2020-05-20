@@ -16,7 +16,7 @@ SORTED_STR_L_JSON_PATH = 'sorted_import_sizes.json'
 ADJ_SORTED_STR_L_JSON_PATH = 'adj_sorted_import_sizes.json'
 NUM_DECIMAL_DIGITS = 3
 
-OVERWRITE_MASTER_SIZES = True
+OVERWRITE_MASTER_SIZES = False
 
 
 def get_size(start_path = '.'):

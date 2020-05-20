@@ -77,10 +77,7 @@ fi_d = {}
  
 for abs_file_path in all_files_abs_path_l:
     ext = fsu.get_extention(abs_file_path)
-#     print(ext)
-     
-    
-     
+ 
     if ext in ['.py', '.pyw']:
         py_basename = os.path.basename(abs_file_path)
         fi_d[py_basename] = set()
@@ -138,7 +135,15 @@ for i_str in i_str_set:
 print(len(i_str_set))
                         
  
- 
+print('done, the next step is to paste the above import statements into an empty .py file and try to run, look at below prints for more info')
+# print('how to use:                                                                         ')
+# print('   list_all_imports > get list > save as list_all_imports_l                         ')
+# print('   paste list into empty py file                                                    ')
+# print('   try to run                                                                       ')
+# print('       if run fails, delete import responsible                                      ')
+# print('       repeat until run succeeds                                                    ')
+# print('   paste remaining imports into working_import_str_l                                ')
+# print('   paste result into i_str_l to list_all_imports_l to not deal with it in the future')
  
  
  
