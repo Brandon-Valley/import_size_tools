@@ -6,7 +6,7 @@
     "import tkinter.ttk  :  7.315",
     "from tkinter import filedialog  :  7.267",
     "import tkinter.filedialog  :  7.267",
-    "from tkinter import *  :  7.235",
+    "from tkinter import *  :  7.236",
     "import tkinter  :  7.235",
     "import _tkinter  :  7.008",
     "from dateutil.parser import parse  :  1.102",

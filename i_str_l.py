@@ -46,16 +46,9 @@ i_str_l =     [
         "import textwrap                       ",
         "import string                         ",
         "import datetime                       ",
-        "import pyperclip.paste                ",
-        "import pyperclip.copy                 ",
-        "import tkinter.Button                 ",
-        "import tkinter.Entry                  ",
-        "import tkinter.Label                  ",
         "import tkinter.filedialog             ",
         "import pygame                         ",
-        "import pil                            ",
-        "import sdofaohosddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfhoa",
-        "import sdofaohosdfhoa",
+
     ]
 
 
