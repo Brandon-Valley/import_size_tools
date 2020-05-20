@@ -48,6 +48,7 @@ i_str_l =     [
         "import datetime                       ",
         "import tkinter.filedialog             ",
         "import pygame                         ",
+        "from pyperclip import copy            ",
 
     ]
 

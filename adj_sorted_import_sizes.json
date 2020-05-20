@@ -1,5 +1,7 @@
 [
     "import pyperclip  :  63.493",
+    "from pyperclip import copy  :  63.493",
+    "import pygame  :  54.489",
     "from setuptools import setup  :  49.098",
     "import tkinter.ttk  :  7.315",
     "from tkinter.ttk import *  :  7.315",

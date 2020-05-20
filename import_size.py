@@ -169,6 +169,7 @@ def main():
                 cmd = 'python ' + PY_TEST_FILE_NAME
                 py_out = subprocess.check_output(cmd, shell = True)
             except subprocess.CalledProcessError:
+                print('\nImport failed, skipping:  ', i_str)
                 failed_import_str_l.append(i_str)
                 continue
             
