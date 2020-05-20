@@ -50,5 +50,11 @@ i_str_l =     [
         "import pyperclip.copy                 ",
         "import tkinter.Button                 ",
         "import tkinter.Entry                  ",
-        "import tkinter.Label                  "
+        "import tkinter.Label                  ",
+        "import tkinter.filedialog             "
     ]
+
+
+if __name__ == '__main__':
+    import import_size
+    import_size.main()

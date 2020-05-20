@@ -132,85 +132,71 @@ def l_print(in_l):
         
         
         
-        
-try:        
-    master_size_d = sorted_str_l_to_size_d(json_read(SORTED_STR_L_JSON_PATH, return_if_file_not_found = []))
-except json.decoder.JSONDecodeError:
-    master_size_d = {}
- 
-local_size_d = {}
-   
-og_script_dir_path = os.path.abspath(os.path.dirname(__file__))
-   
-for i_str in i_str_l:
-    i_str = i_str.strip()
-        
-    if not OVERWRITE_MASTER_SIZES and i_str in master_size_d.keys():
-        print('\nSkipping import because size already known:  {} : {}'.format(i_str, master_size_d[i_str]))
-        
-    else:
-        fsu.delete_if_exists(PY_TEST_DIR_PATH)
-        write([i_str], PY_TEST_PATH)
-        os.chdir(PY_TEST_DIR_PATH)
-           
-        cmd = 'pyinstaller ' + PY_TEST_FILE_NAME
-        subprocess.call(cmd, shell = True)
+def main():        
+    try:        
+        master_size_d = sorted_str_l_to_size_d(json_read(SORTED_STR_L_JSON_PATH, return_if_file_not_found = []))
+    except json.decoder.JSONDecodeError:
+        master_size_d = {}
+     
+    local_size_d = {}
        
-        app_size = get_size(PY_TEST_DIR_PATH)
-        print(i_str, ': ', app_size)
-        
-        local_size_d[i_str] = app_size
-        master_size_d[i_str] = app_size
+    og_script_dir_path = os.path.abspath(os.path.dirname(__file__))
+       
+    for i_str in i_str_l:
+        i_str = i_str.strip()
+            
+        if not OVERWRITE_MASTER_SIZES and i_str in master_size_d.keys():
+            print('\nSkipping import because size already known:  {} : {}'.format(i_str, master_size_d[i_str]))
+            
+        else:
+            fsu.delete_if_exists(PY_TEST_DIR_PATH)
+            write([i_str], PY_TEST_PATH)
+            os.chdir(PY_TEST_DIR_PATH)
+               
+            cmd = 'pyinstaller ' + PY_TEST_FILE_NAME
+            subprocess.call(cmd, shell = True)
            
-        os.chdir(og_script_dir_path)
+            app_size = get_size(PY_TEST_DIR_PATH)
+            print(i_str, ': ', app_size)
+            
+            local_size_d[i_str] = app_size
+            master_size_d[i_str] = app_size
+               
+            os.chdir(og_script_dir_path)
+            
+            # so you stop committing apps
+            fsu.delete_if_exists(PY_TEST_DIR_PATH)
         
-        # so you stop committing apps
-        fsu.delete_if_exists(PY_TEST_DIR_PATH)
+        
+    
+    # result print
+    print('-------------------------------------------------------')
+    master_sorted_size_l = size_d_to_sorted_str_l(master_size_d)
+    print('\nmaster_sorted_size_l')
+    l_print(master_sorted_size_l)
     
     
-
-# result print
-print('-------------------------------------------------------')
-master_sorted_size_l = size_d_to_sorted_str_l(master_size_d)
-print('\nmaster_sorted_size_l')
-l_print(master_sorted_size_l)
-
-
-print('-------------------------------------------------------')
-adj_master_size_d = size_d_to_adjusted_size_d(master_size_d)
-adj_master_size_str_l = size_d_to_sorted_str_l(adj_master_size_d)
-print('\nadj_master_size_str_l:')
-l_print(adj_master_size_str_l)
-
-print('-------------------------------------------------------')
-local_sorted_size_str_l = size_d_to_sorted_str_l(local_size_d)
-print('\nlocal_sorted_size_str_l:')
-l_print(local_sorted_size_str_l)
-
-
-
-json_write(master_sorted_size_l, SORTED_STR_L_JSON_PATH)
-json_write(adj_master_size_str_l, ADJ_SORTED_STR_L_JSON_PATH)
-
-
-# td = sorted_str_l_to_size_d(local_sorted_size_str_l)
-# print(td)
-
-
+    print('-------------------------------------------------------')
+    adj_master_size_d = size_d_to_adjusted_size_d(master_size_d)
+    adj_master_size_str_l = size_d_to_sorted_str_l(adj_master_size_d)
+    print('\nadj_master_size_str_l:')
+    l_print(adj_master_size_str_l)
     
-#  
-# 
-# 
-# local_sorted_dl
-#  
-#  
-# print(sorted(d, key=lambda i: int(d[i])))
+    print('-------------------------------------------------------')
+    local_sorted_size_str_l = size_d_to_sorted_str_l(local_size_d)
+    print('\nlocal_sorted_size_str_l:')
+    l_print(local_sorted_size_str_l)
+    
+    
+    
+    json_write(master_sorted_size_l, SORTED_STR_L_JSON_PATH)
+    json_write(adj_master_size_str_l, ADJ_SORTED_STR_L_JSON_PATH)
+    
 
 
-# size_d = {'a': 50, 'b': 89, 'c': 110, '57482': 18, '57485': 82, '57484': 40}  
-# 
-# print(size_d_to_sorted_str_l(size_d))
 
+if __name__ == '__main__':
+    main()
 
 
 
